@@ -6,6 +6,10 @@ from ckeditor.fields import RichTextField
 
 # Create your models here.
 
+class PostQuerySet(models.QuerySet):
+    def published(self):
+        return self.filter(publish=True)
+
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
@@ -15,6 +19,8 @@ class Post(models.Model):
             default=timezone.now)
     published_date = models.DateTimeField(
             blank=True,  null=True)
+
+    objects = PostQuerySet.as_manager();
 
     def publish(self):
         self.published_date = timezone.now()
