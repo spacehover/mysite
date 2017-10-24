@@ -3,27 +3,31 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
 from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 
 class PostQuerySet(models.QuerySet):
     def published(self):
-        return self.filter(publish=True)
+        return self.filter(publish_flag=True)
 
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
     text = models.TextField()
-    content = RichTextField()
+    #content = RichTextField()
+    content = RichTextUploadingField()
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(
             blank=True,  null=True)
+    publish_flag = models.BooleanField(default=False)
 
     objects = PostQuerySet.as_manager();
 
     def publish(self):
         self.published_date = timezone.now()
+        self.publish_flag = True
         self.save()
 
     def appreoved_comments(self):

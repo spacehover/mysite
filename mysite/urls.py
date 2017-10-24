@@ -13,15 +13,28 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.conf.urls import include, url
+from django.conf.urls.static import static
 from django.contrib import admin
-
 from django.contrib.auth import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/login/$', views.login, name='login'),
     url(r'^accounts/logout/$', views.logout, name='logout', kwargs={'next_page':'/'}),
-#    url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'', include('blog.urls')),
-]
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+] + static(
+    settings.STATIC_URL,
+    document_root=settings.STATIC_ROOT
+) + static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT
+    )
+
+
+#    url(r'^static/(?P<path>.*)$', staticfiles.views.serve),
+#    url(r'^dedia/(?P<path>.*)$', 'django.views.static.serve', {
+#        'document_root': settings.MEDIA_ROOT,
+#        }),

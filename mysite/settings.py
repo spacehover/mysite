@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 import os
+import tempfile
+import django
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,8 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'ckeditor',
+    'ckeditor_uploader',
 ]
-CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_JQUERY_URL = "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
 CKEDITOR_CONFIGS = {
     'default': {
@@ -113,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -127,10 +129,17 @@ USE_TZ = True
 
 # default static files settings for PythonAnywhere.
 # see https://help.pythonanywhere.com/pages/DjangoStaticFiles for more info
-MEDIA_ROOT = u'/home/windhover/mysite/media'
+STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 #STATIC_ROOT = u'/home/windhover/mysite/static'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/client"),)
+#STATIC_ROOT = os.path.join(tempfile.gettempdir(), 'ck_static')
+#MEDIA_ROOT = u'/home/windhover/mysite/media'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+#MEDIA_ROOT = os.path.join(tempfile.gettempdir(), 'ck_media') 
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/client"),)
 LOGIN_REDIRECT_URL = '/'

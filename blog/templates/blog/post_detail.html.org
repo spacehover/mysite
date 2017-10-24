@@ -2,26 +2,26 @@
 
 {% block content %}
     <div class="post">
-        {% if object.published_date %}
+        {% if post.published_date %}
             <div class="date">
-                {{ object.published_date }}
+                {{ post.published_date }}
             </div>
         {% else %}
-            <a class="btn btn-default" href="{% url 'post_publish'  pk=object.pk %}">Publish</a>
+            <a class="btn btn-default" href="{% url 'post_publish'  pk=post.pk %}">Publish</a>
         {% endif %}
         {% if user.is_authenticated %}
-            <a class="btn btn-default" href="{% url 'post_edit' pk=object.pk %}"><span class="oi oi-pencil"></span></a>
-            <a class="btn btn-default" href="{% url 'post_remove' pk=object.pk %}"><span class="oi oi-delete"></span></a>
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="oi oi-pencil"></span></a>
+            <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="oi oi-delete"></span></a>
         {% endif %}
-        <h1>{{ object.title }}</h1>
+        <h1>{{ post.title }}</h1>
         <!--
-        <p>{{ object.text|linebreaksbr }}</p>
+        <p>{{ post.text|linebreaksbr }}</p>
         -->
-        {{ object.content|safe }}
+        <p>{{ object.content|linebreaksbr }}</p>
     </div>
     <hr>
-    <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=object.pk %}">Add comment</a>
-    {% for comment in object.comments.all %}
+    <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+    {% for comment in post.comments.all %}
         {% if user.is_authenticated or comment.approved_comment %}
         <div class="comment">
             <div class="date">
