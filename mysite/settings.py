@@ -143,3 +143,4 @@ CKEDITOR_IMAGE_BACKEND = "pillow"
 
 #STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/client"),)
 LOGIN_REDIRECT_URL = '/'
+
