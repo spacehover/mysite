@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^accounts/login/$', views.login, name='login'),
     url(r'^accounts/logout/$', views.logout, name='logout', kwargs={'next_page':'/'}),
     url(r'', include('blog.urls')),
+    url(r'^photo/', include('photo.urls', namespace='photo')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(
     settings.STATIC_URL,

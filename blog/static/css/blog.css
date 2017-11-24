@@ -6,67 +6,13 @@
 html,
 body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
+  
 }
 body {
   padding-top: 70px;
 }
 footer {
   padding: 30px 0;
-}
-
-/*
- * Off Canvas
- * --------------------------------------------------
- */
-@media screen and (max-width: 767px) {
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all .25s ease-out;
-         -o-transition: all .25s ease-out;
-            transition: all .25s ease-out;
-  }
-
-  .row-offcanvas-right {
-    right: 0;
-  }
-
-  .row-offcanvas-left {
-    left: 0;
-  }
-
-  .row-offcanvas-right
-  .sidebar-offcanvas {
-    right: -100%; /* 12 columns */
-  }
-
-  .row-offcanvas-right.active
-  .sidebar-offcanvas {
-    right: -50%; /* 6 columns */
-  }
-
-  .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: -100%; /* 12 columns */
-  }
-
-  .row-offcanvas-left.active
-  .sidebar-offcanvas {
-    left: -50%; /* 6 columns */
-  }
-
-  .row-offcanvas-right.active {
-    right: 50%; /* 6 columns */
-  }
-
-  .row-offcanvas-left.active {
-    left: 50%; /* 6 columns */
-  }
-
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    width: 50%; /* 6 columns */
-  }
 }
 
 .page-header {
@@ -76,13 +22,17 @@ footer {
 }
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+    /*
+    color: #ffffff;
+    */
     color: #ffffff;
     font-size: 36pt;
     text-decoration: none;
 }
 
 .content {
-    margin-left: 40px;
+    margin-left: 0px;
+    margin-right: 40px;
 }
 
 h1, h2, h3, h4 {
@@ -94,7 +44,7 @@ h1, h2, h3, h4 {
 }
 
 .save {
-    float: right;
+    float: center;
 }
 
 .post-form textarea, .post-form input {
@@ -110,6 +60,7 @@ h1, h2, h3, h4 {
 
 .post {
     margin-bottom: 70px;
+    width: 100%;
 }
 
 .post h1 a, .post h1 a:visited {
@@ -120,4 +71,9 @@ h1, h2, h3, h4 {
     margin: 20px 0px 20px 20px;
 }
 
+
+.post img {
+    max-width: 100%;
+    height: auto;
+}
 
