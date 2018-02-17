@@ -30,7 +30,7 @@ class Post(models.Model):
         self.publish_flag = True
         self.save()
 
-    def appreoved_comments(self):
+    def approved_comments(self):
         return self.comments.filter(approved_comment=True)
 
     def __str__(self):

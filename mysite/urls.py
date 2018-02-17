@@ -19,11 +19,15 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views
 
+from mysite.views import HomeView
+
 urlpatterns = [
+    #url(r'', include('blog.urls')),
+    url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/login/$', views.login, name='login'),
     url(r'^accounts/logout/$', views.logout, name='logout', kwargs={'next_page':'/'}),
-    url(r'', include('blog.urls')),
     url(r'^photo/', include('photo.urls', namespace='photo')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(
